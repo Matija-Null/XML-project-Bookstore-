@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="books.xsl"?>
+<Books>
+    <Book>
+        <Title>Sooley: A Novel</Title>
+        <Author>John Grisham</Author>
+        <Category>Fiction</Category>
+        <Date>2021-4-27</Date>
+        <Price>17.37</Price>
+    </Book>
+    <Book>
+        <Title>The Hill We Climb: An Inaugural Poem for the Country</Title>
+        <Author>Amanda Gorman, Oprah Winfrey</Author>
+        <Category>Poetry</Category>
+        <Date>2021-3-30</Date>
+        <Price>9.59</Price>
+    </Book>
+    <Book>
+        <Title>Later</Title>
+        <Author>Stephen King</Author>
+        <Category>Mystery</Category>
+        <Date>2021-3-2</Date>
+        <Price>9.56</Price>
+    </Book>
+    <Book>
+        <Title>The Song of Achilles: A Novel</Title>
+        <Author>Madeline Miller</Author>
+        <Category>Classic American Literature</Category>
+        <Date>2012-8-28</Date>
+        <Price>10.73</Price>
+    </Book>
+    <Book>
+        <Title>Atomic Habits: An Easy &amp; Proven Way to Build Good Habits &amp; Break Bad Ones</Title>
+        <Author>James Clear</Author>
+        <Category>Personal development</Category>
+        <Date>2018-10-27</Date>
+        <Price>11.98</Price>
+    </Book>
+    <Book>
+        <Title>Clarity &amp; Connection</Title>
+        <Author>Yung Pueblo</Author>
+        <Category>Love &amp; Loss</Category>
+        <Date>2021-4-27</Date>
+        <Price>14.99</Price>
+    </Book>
+    <Book>
+        <Title>Vegetable Simple: A Cookbook</Title>
+        <Author>Eric Ripert</Author>
+        <Category>Vegetarian Cooking</Category>
+        <Date>2021-4-20</Date>
+        <Price>21.49</Price>
+    </Book>
+    <Book>
+        <Title>Outliers: The Story of Success</Title>
+        <Author>Malcolm Gladwell</Author>
+        <Category>Personal development</Category>
+        <Date>2021-6-1</Date>
+        <Price>7.79</Price>
+    </Book>
+    <Book>
+        <Title>Effortless: Make It Easier to Do What Matters Most</Title>
+        <Author>Greg McKeown</Author>
+        <Category>Personal development</Category>
+        <Date>2021-4-27</Date>
+        <Price>22.81</Price>
+    </Book>
+</Books>
