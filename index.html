@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="style.css">
     <title>Bookstore for your needs!</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
     <div id="nav" class="container">
+        <!--Navigation bar-->
         <div class="row">
             <div class="col-6">
                 <h1 id="title">Bookstore</h1>
@@ -27,16 +29,52 @@
         </div>
     </div>
     <div style="color:rgba(255, 255, 255, 0.342);height:10px;width:80%;border-color:rgba(255, 255, 255, 0.774);border-style:solid;border-width:0 0 1px;margin:0 10%;padding:0;"></div>
-    <main>
-        <div class="container">
+<main>
+    <div class="container">
         <div class="row justify-content-md-center">
             <div class="col">
+                <!--Search bar-->
                 <h2 id="title2">Search for your favourite books!</h2>
-            <form id="form1"action=""><input type="text" name="keywords" id="input" onkeyup="myFunction()" placeholder="Search..."><button onclick="window.location.href='Books.html';" type="button" class="submit"><i class="fas fa-search"></i></button></form>
+                <form id="form1"><input type="text" name="keywords" id="input" onkeyup="myFunction()" placeholder="Search by name or author"></input><button onclick="window.location.href='Books.html';" type="button" class="submit"><i class="fas fa-search"></i></button></form>
+                <br>
+                <p id="output"></p>
+            <script>
+                //Connect to XML file
+                $(document).ready(function(){
+                $('#input').on('keyup', function(){
+                $.ajax({
+                type: "GET",
+                url: "books.xml",
+                dataType: "xml",
+                success: parseXML
+                    });
+                });
+            });
+                //Use #input data to search for ocurrences in XML data and then display it in #output (Title and Description only)
+            function parseXML(xml){
+                var searchFor = $('#input').val();
+                var reg = new RegExp(searchFor, "i");
+                $(xml).find('Book').each(function()
+                {
+                    var title = $(this).find('Title').text();
+                    var titleSearch = title.search(reg);
+                    var author = $(this).find('Author').text();
+                    var authorSearch = author.search(reg);
+                    $('#output').empty();
+                    if(titleSearch > -1){
+                        $('#output').append('Found <i>'+searchFor+'<\/i> in title: '+title.replace(reg, '<b>'+searchFor+'</b>')+'<br \/>');
+                    }
+                    if(authorSearch > -1){
+                        $('#output').append('Found <i>'+searchFor+'<\/i> in author: '+author.replace(reg, '<b>'+searchFor+'</b>')+'<br \/>');
+                    }
+                });    
+                }
+            </script>
             </div>
         </div>
-        </div>   
-        <div id="white">
+    </div>  
+    <div id="white">
+            <!--List of books--> 
             <h3>Recomended for you:</h3>
             <br>
             <div class="container">
@@ -47,7 +85,7 @@
                         <br>
                         <strong class="title">Sooley: A Novel</strong>
                         <br>
-                        <i>John Grisham</i>
+                        <i class="author">John Grisham</i>
                         <br>
                       </a>
                     </div>
@@ -57,7 +95,7 @@
                         <br>
                         <strong class="title">The Hill We Climb</strong>
                         <br>
-                        <i>Amanda Gorman, Oprah Winfrey</i>
+                        <i class="author">Amanda Gorman, Oprah Winfrey</i>
                         <br>
                     </a>
                     </div>
@@ -67,7 +105,7 @@
                         <br>
                         <strong class="title">Later</strong>
                         <br>
-                        <i>Stephen King</i>
+                        <i class="author">Stephen King</i>
                         <br>
                     </a>
                     </div>
@@ -80,7 +118,7 @@
                         <br>
                         <strong class="title">The Song of Achilles: A Novel</strong>
                         <br>
-                        <i>Madeline Miller</i>
+                        <i class="author">Madeline Miller</i>
                         <br>
                     </a>
                     </div>
@@ -90,7 +128,7 @@
                         <br>
                         <strong class="title">Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones</strong>
                         <br>
-                        <i>James Clear</i>
+                        <i class="author">James Clear</i>
                         <br>
                     </a>
                     </div>
@@ -100,7 +138,7 @@
                         <br>
                         <strong class="title">Clarity & Connection</strong>
                         <br>                     	
-                        <i>Yung Pueblo</i>
+                        <i class="author">Yung Pueblo</i>
                         <br>
                     </a>
                     </div>
@@ -113,7 +151,7 @@
                         <br>
                         <strong class="title">Vegetable Simple: A Cookbook</strong>
                         <br>
-                        <i>Eric Ripert</i>
+                        <i class="author">Eric Ripert</i>
                         <br>
                         </a>
                     </div>
@@ -123,7 +161,7 @@
                         <br>
                         <strong class="title">Outliers: The Story of Success</strong>
                         <br>	
-                        <i>Malcolm Gladwell</i>
+                        <i class="author">Malcolm Gladwell</i>
                         <br>
                     </a>
                     </div>
@@ -133,7 +171,7 @@
                         <br>
                         <strong class="title">Effortless: Make It Easier to Do What Matters Most</strong>
                         <br>
-                        <i>Greg McKeown</i>
+                        <i class="author">Greg McKeown</i>
                         <br>
                     </a>
                     </div>
@@ -141,11 +179,13 @@
                 <hr id="hr3">
                 <br>
             </div>
-        </div>
-        <script>
+    </div>
+    <script>
+        //Filter elements by title or author. Other elements are hidden while the requested one is shown.
         function myFunction() 
         {
-            var input, filter, col, items, a, title, i, hr;
+            var input, filter, col, items, a, title, author, i, hr;
+            //row 1
             hr = document.getElementById("hr1");
             input = document.getElementById("input");
             filter = input.value.toUpperCase();
@@ -153,7 +193,8 @@
             col = items.getElementsByClassName("col-4");
             for (i = 0; i < col.length; i++) {
                 title = col[i].querySelector("strong.title");
-                if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                author = col[i].querySelector("i.author");
+                if (title.innerText.toUpperCase().indexOf(filter) > -1 || author.innerText.toUpperCase().indexOf(filter) > -1) {
                     col[i].style.display = "";
                     hr.style.display = "";
                 } else {
@@ -161,12 +202,14 @@
                     hr.style.display = "none";
                 }
             }
+            //row 2
             hr = document.getElementById("hr2");
             items = document.getElementById("items2");
             col = items.getElementsByClassName("col-4");
             for (i = 0; i < col.length; i++) {
                 title = col[i].querySelector("strong.title");
-                if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                author = col[i].querySelector("i.author");
+                if (title.innerText.toUpperCase().indexOf(filter) > -1 || author.innerText.toUpperCase().indexOf(filter) > -1) {
                     col[i].style.display = "";
                     hr.style.display = "";
                 } else {
@@ -174,12 +217,14 @@
                     hr.style.display = "none";
                 }
             }
+            //row 3
             hr = document.getElementById("hr3");
             items = document.getElementById("items3");
             col = items.getElementsByClassName("col-4");
             for (i = 0; i < col.length; i++) {
                 title = col[i].querySelector("strong.title");
-                if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                author = col[i].querySelector("i.author");
+                if (title.innerText.toUpperCase().indexOf(filter) > -1 || author.innerText.toUpperCase().indexOf(filter) > -1) {
                     col[i].style.display = "";
                     hr.style.display = "";
                 } else {
@@ -189,11 +234,11 @@
             }
         }
     </script>
-    </main>
+</main>
     
-    <footer>
-        <span>© Matija Dolenec <script>document.write( new Date().getUTCFullYear() );</script></span>
-    </footer>
+<footer>
+    <span>© Matija Dolenec <script>document.write( new Date().getUTCFullYear() );</script></span>
+</footer>
 </body>
 
 </html>

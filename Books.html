@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="nav" class="container">
+        <!--Navigation-->
         <div class="row">
             <div class="col-6">
                 <h1 id="title">Bookstore</h1>
@@ -29,6 +30,7 @@
     <div style="color:rgba(255, 255, 255, 0.342);height:10px;width:80%;border-color:rgba(255, 255, 255, 0.774);border-style:solid;border-width:0 0 1px;margin:0 10%;padding:0;"></div>
     <main>  
         <div id="white">
+            <!--List of books-->
             <br>
             <div class="container">
                 <hr>
@@ -99,7 +101,7 @@
                         <br>
                         <p>March 2, 2021</p>
                         
-                        <span>“Part detective tale, part thriller…touching and genuine.” —The New York Times #1 bestselling author Stephen King returns with a brand-new novel about the secrets we keep buried and the cost of unearthing them.</span>
+                        <span>New York Times bestselling author John Grisham takes you to a different kind of court in his first basketball novel. Samuel “Sooley” Sooleymon is a raw, young talent with big hoop dreams … and even bigger challenges off the court.</span>
                         <br>
                         <br>
                         <i>Price: $9.56</i>
@@ -267,26 +269,27 @@
                 <div class="container center">
                     <div class="row">
                         <div class="col">
+                            <!--Table with XML data-->
                             <div class="tableButton">
                             <button id="tableButton" class="btn btn-primary" type="button" onclick="loadXMLDoc()" style="text-align: center;">Show all books in a table</button>
                             </div>
                             <br><br><br>
             
-                            <table id="tableBooks" crossorigin="anonymous"></table>
-                             
+                            <table id="tableBooks"></table>
+                            
                             <script>
+                            //Access the XML file
                             function loadXMLDoc() {
-                                
                               var xmlhttp = new XMLHttpRequest();
                               xmlhttp.onreadystatechange = function() {
                                 if (this.readyState == 4 && this.status == 200) {
                                   myFunction(this);
-                                  
                                 }
                               };
-                              xmlhttp.open("GET", "books.xml", true);
+                              xmlhttp.open("GET", "Books.xml", true);
                               xmlhttp.send();
                             }
+                            //Generate the table and fill it with data
                             function myFunction(xml) {
                               var i;
                               var xmlDoc = xml.responseXML;

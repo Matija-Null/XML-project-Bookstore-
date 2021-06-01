@@ -78,7 +78,7 @@ body{
 #white{
     padding-top: 2em;
     margin: auto;
-    margin-top: 11em;
+    margin-top: 6em;
     background-color: white;
     text-align: center;
     height: auto;
@@ -98,6 +98,13 @@ footer{
     text-align: center;
     background-color: white;
     padding-bottom: 2em;
+}
+
+#output{
+    margin-top: 1em;
+    text-align: center;
+    color: white;
+    font-size: smaller;
 }
 
 /* For mobile phones: */
