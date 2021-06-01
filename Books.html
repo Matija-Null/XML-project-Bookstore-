@@ -272,14 +272,16 @@
                             </div>
                             <br><br><br>
             
-                            <table id="tableBooks"></table>
-                            
+                            <table id="tableBooks" crossorigin="anonymous"></table>
+                             
                             <script>
                             function loadXMLDoc() {
+                                
                               var xmlhttp = new XMLHttpRequest();
                               xmlhttp.onreadystatechange = function() {
                                 if (this.readyState == 4 && this.status == 200) {
                                   myFunction(this);
+                                  
                                 }
                               };
                               xmlhttp.open("GET", "books.xml", true);
